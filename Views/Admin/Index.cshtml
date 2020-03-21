@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "_AdminLayout";
+    int id = ViewBag.id;
+}
+
+<!-- Content Row -->
+@*<div class="row my-5">*@
+<div class="card-deck" style="margin:10% 0;">
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:300px;">
+            @*<img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">*@
+            <div class="card-body">
+                <h4 class="card-title">Messages</h4>
+                <p class="card-text">View and search Messages</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+
+                <a href="/Admin/ViewMessages" class="card-link"> <button type="button" class="btn btn-primary  btn-block">View </button></a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-4 -->
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:300px;">
+            @*<img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">*@
+            <div class="card-body">
+                <h4 class="card-title">Manage Doctors</h4>
+                <p class="card-text">Add, remove or edit Doctors' accounts</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+                <a href="/Admin/ManageDoctor"><button type="button" class="btn btn-primary" style="width:133px;">Manage</button></a>
+                <a href="/Identity/Account/Register"> <button type="button" class="btn btn-primary " style="width:133px;">Create</button></a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-4 -->
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:300px;">
+            @*<img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">*@
+            <div class="card-body">
+                <h4 class="card-title">Manage Admins</h4>
+                <p class="card-text">Add, remove or edit Admins' accounts</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+                <a href="/Admin/ManageAdmin"><button type="button" class="btn btn-primary" style="width:133px;">Manage</button></a>
+                <a href="/Identity/Account/RegisterAdmin"> <button type="button" class="btn btn-primary " style="width:133px;">Create</button></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="card-deck" style="margin:10% 0;margin-left:200px;">
+    <!-- /.col-md-4 -->
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:300px;">
+            @*<img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">*@
+            <div class="card-body">
+                <h4 class="card-title">Manage Assistant</h4>
+                <p class="card-text">Add, remove or edit Assistants' accounts</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+                <a href="/Admin/ManageAssistant"><button type="button" class="btn btn-primary" style="width:133px;">Manage</button></a>
+                <a href="/Identity/Account/RegisterAssistant"> <button type="button" class="btn btn-primary " style="width:133px;">Create</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:300px;margin-left:70px;">
+            @*<img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">*@
+            <div class="card-body">
+                <h4 class="card-title">Manage Insurance Company</h4>
+                <p class="card-text">Add, remove or edit Insurance Companies' accounts</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+                <a href="/Admin/ManageInsurance"><button type="button" class="btn btn-primary" style="width:133px;">Manage</button></a>
+                <a href="/Identity/Account/RegisterInsurance"> <button type="button" class="btn btn-primary " style="width:133px;">Create</button></a>
+            </div>
+        </div>
+    </div>
+
+</div>

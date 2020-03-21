@@ -1,0 +1,49 @@
+﻿@model Consultation
+@{
+    Layout = "_AssistantLayout";
+    var patients = ViewBag.patients;
+    int drId = ViewBag.drId;
+}
+<h1 style="margin-top:50px;">Create Consultation:</h1>
+
+<form asp-action="CreateConsultation" class="form-group">
+    <label>Choose Patient:</label><br />
+    <select asp-for="PatientId" class="form-control col-6">
+        @foreach (var p in patients)
+        {
+            <option value="@p.Id">@p.fname @p.mname @p.lname</option>
+        }
+    </select>
+    <input type="hidden" asp-for="DoctorId" value="@drId" class="form-control " />
+
+    <label>Title:</label><br />
+    <input type="text" asp-for="Title" class="form-control col-6" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+    <label>Type:</label><br />
+    <input type="text" asp-for="Type" class="form-control col-6" />
+    <span asp-validation-for="Type" class="text-danger"></span>
+    <label>Date</label><br />
+    <input asp-for="DateCons" class="form-control col-6" />
+    <span asp-validation-for="DateCons" class="text-danger"></span>
+    <label>Symptoms:</label><br />
+    <input type="text" asp-for="Symptoms" class="form-control col-6" />
+    <span asp-validation-for="Symptoms" class="text-danger"></span>
+    <label>Diagnosis</label><br />
+    <input type="text" asp-for="Diagnoses" class="form-control col-6" />
+    <span asp-validation-for="Diagnoses" class="text-danger"></span>
+    <label>Temp</label><br />
+    <input type="text" asp-for="Temp" class="form-control col-6" />
+    <span asp-validation-for="Temp" class="text-danger"></span>
+    <label>BloodPressure</label><br />
+    <input type="text" asp-for="BloodPressure" class="form-control col-6" />
+    <span asp-validation-for="BloodPressure" class="text-danger"></span>
+    <label>Cost</label><br />
+    <input type="text" asp-for="Cost" class="form-control col-6" />
+    <span asp-validation-for="Cost" class="text-danger"></span>
+    <label>Treatment</label><br />
+    <input type="text" asp-for="Treatment" class="form-control col-6" />
+    <span asp-validation-for="Treatment" class="text-danger"></span>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

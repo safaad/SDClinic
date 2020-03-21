@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = "_PatientLayout";
+    int id = ViewBag.id;
+    Patient p = ViewBag.pt;
+}
+
+
+<div style="margin-top:100px;">
+    <img src="@p.Picture" class="img-thumbnail" style="width:300px;height:300px;" />
+</div>
+
+<div class="float-center">
+    <table class="table table-active">
+        <tr>
+            <td style="color:#99003d;"><b>Name: </b></td>
+            <td>@p.fname @p.mname @p.lname</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Gender: </b></td>
+            <td>@p.Gender</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Age: </b></td>
+            <td>@(@DateTime.Now.Year - ((DateTime)@p.Birthday).Year)</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Address: </b></td>
+            <td>@p.Address</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>BloodType: </b></td>
+            <td>@p.BloodType</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Insurance Company: </b></td>
+            <td>@p.pat_insurance_company_name</td>
+        </tr>
+    </table>
+</div>

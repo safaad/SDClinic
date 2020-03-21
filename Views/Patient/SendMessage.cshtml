@@ -1,0 +1,39 @@
+﻿@model Messages
+@{
+    Layout = "_PatientLayout";
+    int id = ViewBag.id;
+    List<Messages> msgs = ViewBag.msgs;
+
+
+}
+    <div style="margin-top:100px;">
+        <form asp-action="AddMessage" asp-route-ptid="@id" class="form-inline">
+            <input type="hidden" asp-for="Name" value="name" />
+            <input type="hidden" asp-for="DateMsg" value="@DateTime.Now" />
+            <label>Subject</label>
+            <input asp-for="Subject" class="form-control" />
+            <label>Message</label>
+            <input asp-for="Content" class="form-control" />
+            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>    Send Message</button>
+        </form>
+
+    </div>
+<div style="margin-top:75px;">
+    <table class="table table-bordered">
+        <tr>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Content</th>
+
+        </tr>
+        @foreach (Messages msg in msgs)
+        {
+
+            <tr>
+                <td>@msg.DateMsg</td>
+                <td>@msg.Subject</td>
+                <td>@msg.Content</td>
+            </tr>
+        }
+    </table>
+</div>

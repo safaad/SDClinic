@@ -1,0 +1,39 @@
+﻿@model Consultation
+@{
+    Layout = "_DoctorLayout";
+    var patients = ViewBag.patients;
+    int drId = ViewBag.drId;
+}
+    <h1 style="margin-top:50px;">Create Consultation:</h1>
+
+    <form asp-action="CreateConsultation" class="form-group">
+        <label>Choose Patient:</label><br />
+        <select name="PatientId" class="form-control col-6">
+            @foreach (var p in patients)
+            {
+                <option value="@p.Id">@p.fname @p.mname @p.lname</option>
+            }
+        </select>
+        <input type="hidden" name="DoctorId" value="@drId" class="form-control "/>
+        <label>Title:</label><br />
+        <input type="text" name="Title" class="form-control col-6"/>
+        <label>Type:</label><br />
+        <input type="text" name="Type" class="form-control col-6"/>
+        <label>Date</label><br />
+        <input type="date" name="DateCons" class="form-control col-6"/>
+        <label>Symptoms:</label><br />
+        <input type="text" name="Symptoms" class="form-control col-6"/>
+        <label>Diagnosis</label><br />
+        <input type="text" name="Diagnoses" class="form-control col-6"/>
+        <label>Temp</label><br />
+        <input type="text" name="Temp" class="form-control col-6"/>
+        <label>BloodPressure</label><br />
+        <input type="text" name="BloodPressure" class="form-control col-6"/>
+        <label>Cost</label><br />
+        <input type="text" name="Cost" class="form-control col-6"/>
+        <label>Treatment</label><br />
+        <input type="text" name="Treatment" class="form-control col-6"/>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Create</button> 
+    </form>

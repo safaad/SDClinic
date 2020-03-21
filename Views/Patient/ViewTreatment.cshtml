@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = "_PatientLayout";
+    List<Consultation> cons = ViewBag.cons;
+    int ptId = ViewBag.id;
+
+}
+
+<table class="table table-active table-hover" style="margin-top:100px;">
+    
+    <thead class="thead-dark">
+        <th>
+            Consultation's Title
+        </th>
+        <th>
+            Doctor's Name
+        </th>
+        <th>
+            Treatment
+        </th>
+        <th></th>
+    </thead>
+    @foreach(Consultation c in cons)
+    {
+        <tr>
+            <th style="color:#99003d;">@c.Title</th>
+            <td>
+                Dr. @c.Doctor.fname @c.Doctor.mname  @c.Doctor.lname
+            </td>
+            <td>
+                <b>
+                    @c.Treatment
+                </b>
+            </td>
+            <td>
+                <a asp-action="ViewConsultation" asp-route-ptId="@ptId" asp-route-consId="@c.Id"><button class="btn btn-primary"><i class="fa fa-eye"></i></button></a>
+            </td>
+        </tr>
+    }
+
+
+</table>

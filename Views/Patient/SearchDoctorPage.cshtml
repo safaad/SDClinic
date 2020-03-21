@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = "_PatientLayout";
+    int id = ViewBag.id;
+    List<Doctor> drs = ViewBag.drs;
+}
+
+<form asp-action="SearchDoctor" asp-route-ptId="@id" class="form-inline" style="margin-top:50px;margin-left:100px;">
+    <div class="form-group mb-2">
+        <label>Search by Name or Speciality</label>
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+
+        <input type="text" name="name" class="form-control" placeholder="Name..">
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label>Select Speciality</label>
+        <select name="speciality" class="form-control">
+            <option value="all" selected="selected">All</option>
+            <option value="Anesthesiology">Anesthesiology</option>
+            <option value="immunology">Immunology</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="InternalMedicine">Internal medicine</option>
+            <option value="Neurology">Neurology</option>
+            <option value="pediatric">pediatric</option>
+            <option value="surgery">surgery</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2"> <i class="fa fa-search"></i>    Search</button>
+</form>
+
+<table class="table table-active table-hover" style="margin-top:100px;">
+
+    <thead class="thead-dark">
+    <th>
+        Doctor's Name
+    </th>
+    <th>
+        Speciality
+    </th>
+    <th>
+        Gender
+    </th>
+    <th>
+        About
+    </th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (Doctor dr in drs)
+        {
+
+            <tr>
+                <td>Dr. @dr.fname @dr.mname @dr.lname</td>
+                <td>@dr.Speciality</td>
+                <td>@dr.Gender</td>
+                <td>@dr.About</td>
+            </tr>
+
+        }
+    </tbody>
+</table>

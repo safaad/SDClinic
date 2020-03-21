@@ -1,0 +1,50 @@
+﻿@model Date
+@{
+    Layout = "_AssistantLayout";
+    Doctor dr = ViewBag.dr;
+    int id=ViewBag.id;
+    List<Patient> patients = ViewBag.patients;
+    List<Date> dates = ViewBag.dates;
+}
+
+<h1 style="margin-top:50px;">Manage your Dr.'s dates</h1>
+<h6>Add, Delete, or Edit...</h6>
+
+<table class="table table-active table-bordered table-hover" style="margin-top:100px;">
+    <thead class="thead-dark">
+    <th>
+        Patient Name
+    </th>
+    <th>
+        Date
+    </th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (Date d in dates)
+        {
+            <tr>
+                <td>@d.Patient.fname @d.Patient.mname @d.Patient.lname</td>
+                <td>@d.date_dateTime</td>
+                <td style="text-align:center;">
+                    <a asp-action="DeleteDate" asp-route-asisId="@id" asp-route-DateId="@d.Id">Delete</a> |
+                    <a asp-action="UpdateDatePage" asp-route-asisId="@id" asp-route-DateId="@d.Id">Edit</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <form asp-action="CreateDate"  class="form-inline">
+                <td>
+                    <select asp-for="PatientId" class="form-control col-8">
+                        @foreach (Patient pt in patients)
+                        {
+                            <option value="@pt.Id">@pt.fname @pt.mname @pt.lname </option>
+                        }
+                    </select>
+                </td>
+                <td><input type="datetime-local" asp-for="date_dateTime" class="form-control col-7" /></td>
+                <td style="text-align:center;"><button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>Add Date</button></td>
+            </form>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = "_PatientLayout";
+    Consultation cons = ViewBag.con;
+    Patient pt = ViewBag.pt;
+}
+    <h3 style="margin-top:50px;">@cons.Title in @cons.DateCons</h3>
+<h5> @cons.Type </h5>
+<h5><b>Patient's name:</b> @pt.fname @pt.mname  @pt.lname</h5>
+<h5><b>Doctor's name:</b> @cons.Doctor.fname @cons.Doctor.mname  @cons.Doctor.lname</h5>
+<h6><b>Doctor's Speciality</b> @cons.Doctor.Speciality</h6>
+<br />
+<div>
+    <h6>Symptoms:</h6>
+    <p>
+        @cons.Symptoms
+    </p>
+    <hr />
+    <h6>Diagnosis:</h6>
+    <p>
+        @cons.Diagnoses
+    </p>
+    <hr />
+    <h6>Temparture:</h6>
+    <p>
+        @cons.Temp
+    </p>
+    <hr />
+    <h6>Blood Pressure:</h6>
+    <p>
+        @cons.BloodPressure
+    </p>
+    <hr />
+    <h6>Cost:</h6>
+    <p>
+        @cons.Cost
+    </p>
+    <hr />
+    <h6>Treatment:</h6>
+    <p>
+        @cons.Treatment
+    </p>
+    <hr />
+    <h6>Insurance Confirmation</h6>
+    <p>@cons.Insurance_Confirmation</p>
+</div>

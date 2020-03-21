@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_AdminLayout";
+    int id = ViewBag.id;
+    List<Messages> msgs = ViewBag.msgs;
+}
+
+
+
+
+<table class="table table-active table-bordered table-hover" style="margin-top:100px;">
+    <thead class="thead-dark">
+    <th>
+        Name
+    </th>
+    <th>
+        Subject
+    </th>
+    <th>
+        Content
+    </th>
+    <th>
+        Date
+    </th>
+    </thead>
+    <tbody>
+        @foreach(Messages msg in msgs)
+        {
+        <tr>
+            <td>@msg.Name</td>
+
+            <td>@msg.Subject</td>
+
+            <td>@msg.Content</td>
+
+            <td>@msg.DateMsg</td>
+        </tr>
+        }
+    </tbody>
+    </table>

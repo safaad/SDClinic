@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = "_AssistantLayout";
+    int id=ViewBag.id;
+    Patient p = ViewBag.pt;
+}
+
+<h3 style="margin-top:50px;margin-bottom:15px;color:#99003d;"><b>Patient</b> @p.fname @p.mname @p.lname</h3>
+
+<div>
+    <img src="@p.Picture" class="img-thumbnail" style="width:300px;height:300px;"/>
+</div>
+<div style="margin-left:1045px;">
+    <a asp-action="UpdatePatientPage" asp-route-asisId="@id" asp-route-ptId="@p.Id">
+        <button class="btn btn-primary"><i class="fa fa-edit"></i>  Edit</button>
+    </a>
+</div>
+<div class="float-center">
+    <table class="table table-active">
+        <tr>
+            <td style="color:#99003d;"><b>Name: </b></td>
+            <td>@p.fname @p.mname @p.lname</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Gender: </b></td>
+            <td>@p.Gender</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Age: </b></td>
+            <td>@(@DateTime.Now.Year - ((DateTime)@p.Birthday).Year)</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Address: </b></td>
+            <td>@p.Address</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>BloodType: </b></td>
+            <td>@p.BloodType</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Insurance Company: </b></td>
+            <td>@p.pat_insurance_company_name</td>
+        </tr>
+    </table>
+</div>

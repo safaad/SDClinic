@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = "_AdminLayout";
+    List<Doctor> drs = ViewBag.drs;
+
+}
+
+<table class="table table-active table-bordered table-hover" style="margin-top:200px;">
+    <thead class="thead-dark">
+        <th>FName</th>
+        <th>MName</th>
+        <th>LName</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>About</th>
+        <th>Speciality</th>
+        <th>Time</th>
+        <th><a href="/Identity/Account/Register"><button class="btn btn-primary"><i class="fa fa-plus"></i> Add</button></a></th>
+    </thead>
+    <tbody>
+        @foreach(Doctor dr in drs)
+        {
+        <tr>
+            <td>@dr.fname</td>
+            <td>@dr.mname</td>
+            <td>@dr.lname</td>
+            <td>@dr.Gender</td>
+            <td>@(@DateTime.Now.Year - ((DateTime)@dr.Birthday).Year)</td>
+            <td>@dr.Address</td>
+            <td>@dr.About</td>
+            <td>@dr.Speciality</td>
+            <td>@dr.Time</td>
+            <td>
+                <a asp-action="DeleteDoctor" asp-route-drid="@dr.Id">Delete</a>|
+                <a asp-action="EditDoctor" asp-route-drid="@dr.Id"> Edit</a>
+                @*|
+                <a asp-action="ViewDoctor" asp-route-drid="@dr.Id">View</a>*@
+
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

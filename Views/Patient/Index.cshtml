@@ -1,0 +1,53 @@
+﻿@model Messages
+@{
+    Layout = "_PatientLayout";
+    Patient pt= ViewBag.pt;
+}
+<h1>Welcome @pt.fname</h1>
+<!-- Content Row -->
+@*<div class="row my-5">*@
+<div class="card-deck" style="margin:10% 0;">
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:400px;">
+            <img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">
+            <div class="card-body">
+                <h4 class="card-title">Dates</h4>
+                <p class="card-text">View your upcoming Dates</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+
+                <a href="/Patient/ViewDates?id=@pt.Id" class="card-link"> <button type="button" class="btn btn-primary  btn-block">View </button></a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-4 -->
+    <div class="col-md-4 ">
+        <div class="card h-100 card-custom text-center" style="width:300px;height:400px;">
+            <img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">
+            <div class="card-body">
+                <h4 class="card-title">Treatment Information</h4>
+                <p class="card-text">View treatements' details and consultation details</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+                @*<button type="button" class="btn btn-primary">View</button>*@
+                <a href="/Patient/ViewTreatment?id=@pt.Id" class="card-link"><button type="button" class="btn btn-primary btn-block">View</button></a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-4 -->
+    <div class="col-md-4 ">
+        <div class="card card-custom h-100 text-center" style="width:300px;height:400px;">
+            <img class="card-img-top img-circle" src="~/images/Admin.jpg" alt="Card image cap" style="width:150px;height:150px; background-color:white;border-radius: 12px;margin:25%">
+            <div class="card-body">
+                <h4 class="card-title">Search a Doctor</h4>
+                <p class="card-text">View List of doctors and search for the suitable one</p>
+            </div>
+            <div class="card-footer btn-group btn-group-sm text-center">
+                <a href="/Patient/SearchDoctorPage?id=@pt.Id"><button type="button" class="btn btn-primary btn-block">Search</button></a>
+                @*<a href="/Doctor/CreateConsultationPage?id=1003"> <button type="button" class="btn btn-primary " style="width:133px;">Create</button></a>*@
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-4 -->
+</div>
+

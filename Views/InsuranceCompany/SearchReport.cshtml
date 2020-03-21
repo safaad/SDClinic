@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = "_InsuranceLayout";
+    String id = ViewBag.id;
+    InsuranceCompany ins = ViewBag.ins;
+    List<Consultation> cons = ViewBag.cons;
+    String patname = ViewBag.patname;
+}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">@id</h1>
+        <p class="lead">Here you can observe the consultations and approve on your patients</p>
+        <a asp-action="Index" asp-route-id="@id"><button class="btn btn-primary">View ALL</button></a>
+    </div>
+</div>
+<div>
+    <form asp-action="SearchReport" asp-route-id="@id" class="form-inline" style="margin-top:50px;margin-left:100px;">
+        <div class="form-group mb-2">
+            <label>Search by Patient Name</label>
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+
+            <input type="text" name="patname" class="form-control" placeholder="Enter Patient Name.." value="@patname">
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2"> <i class="fa fa-search"></i></button>
+
+    </form>
+
+</div>
+
+<table class="table table-active table-hover" style="margin-top:100px;">
+
+    <thead class="thead-dark">
+    <th>Patient Name</th>
+    <th>Doctor Name</th>
+    <th>Title</th>
+    <th>Diagnosis</th>
+    <th>Cost</th>
+    <th>Confirmation</th>
+    </thead>
+    <tbody>
+        @foreach (Consultation con in cons)
+        {
+            <tr>
+                <td>
+                    @con.Patient.fname @con.Patient.mname @con.Patient.lname
+                </td>
+
+                <td>
+                    @con.Doctor.fname @con.Doctor.mname @con.Doctor.lname
+                </td>
+                <td>
+                    @con.Title
+                </td>
+                <td>
+                    @con.Diagnoses
+                </td>
+                <td>@con.Cost</td>
+                <td>
+                    <form asp-action="UpdateConsultation" asp-route-insname="@id" asp-route-consid="@con.Id" class="form-inline">
+                        <select name="confirmation" class="form-control" value="@con.Insurance_Confirmation">
+                            <option value="@con.Insurance_Confirmation" selected="selected">@con.Insurance_Confirmation</option>
+                            @if (con.Insurance_Confirmation == "Agree")
+                            {
+                                <option value="Disagree">Disagree</option>
+                                <option value="pending">pending</option>
+                            }
+                            else
+                            {
+                                @if (con.Insurance_Confirmation == "Disagree")
+                                {
+                                    <option value="Agree">Agree</option>
+                                    <option value="pending">pending</option>
+                                }
+                                else
+                                {
+                                    <option value="Agree">Agree</option>
+                                    <option value="Disagree">Disagree</option>
+                                }
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

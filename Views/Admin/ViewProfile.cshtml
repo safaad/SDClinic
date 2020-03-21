@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = "_AdminLayout";
+    int id = ViewBag.id;
+    Admin admin = ViewBag.admin;
+}
+
+@*<div>
+        <table class="table" style="margin-top:100px;">
+            <tr>
+                <td><b>Name</b></td>
+                <td>@dr.fname @dr.mname @dr.lname</td>
+            </tr>
+            <tr>
+                <td><b>Speciality</b></td>
+                <td>@dr.Speciality</td>
+            </tr>
+            <tr>
+                <td><b>UserName</b></td>
+                <td>@dr.username</td>
+            </tr>
+            <tr>
+                <td><b>Birthdate</b></td>
+                <td>@dr.Birthday</td>
+            </tr>
+            <tr>
+                <td><b>Address</b></td>
+                <td>@dr.Address</td>
+            </tr>
+            <tr>
+                <td><b>About</b></td>
+                <td>@dr.About</td>
+            </tr>
+            <tr>
+                <td><b>Time</b></td>
+                <td>@dr.Time</td>
+            </tr>
+            <tr>
+                <td><b>Gender</b></td>
+                <td>@dr.Gender</td>
+            </tr>
+        </table>
+    </div>*@
+<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>@admin.fname @admin.mname @admin.lname</p>
+    </div>

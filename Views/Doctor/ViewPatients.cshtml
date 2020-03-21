@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "_DoctorLayout";
+    var dr = ViewBag.doctor;
+    List<Patient> patients = ViewBag.patients;
+}
+<h1> Welcome @dr.fname @dr.mname @dr.lname</h1>
+<h4>Here is a list of your patients</h4>
+<table class="table table-active table-bordered table-hover" style="margin-top:100px;">
+    <thead class="thead-dark">
+       
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th> BloodType</th>
+        <th>Insurance Company</th>
+    </thead><tbody>
+    @foreach (Patient pt in patients)
+    {
+        <tr>
+            
+            <td>@pt.fname @pt.mname @pt.lname</td>
+            <td>@pt.Gender</td>
+            <td>@(@DateTime.Now.Year - ((DateTime)@pt.Birthday).Year)</td>
+            <td>@pt.Address</td>
+
+            <td>@pt.BloodType</td>
+            <td>@pt.pat_insurance_company_name</td>
+            
+
+        </tr>
+    }
+    </tbody>
+</table>

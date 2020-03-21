@@ -1,0 +1,99 @@
+﻿@model Doctor
+@{
+    Layout = "_AdminLayout";
+    List<Doctor> drs = ViewBag.drs;
+    Doctor d = ViewBag.dr;
+}
+
+<table class="table table-active table-bordered table-hover" style="margin-top:200px;">
+    <thead class="thead-dark">
+    <th>FName</th>
+    <th>MName</th>
+    <th>LName</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>About</th>
+    <th>Speciality</th>
+    <th>Time</th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (Doctor dr in drs)
+        {
+            @if (dr.Id == d.Id)
+            {
+        <form asp-action="UpdateDoctor" class="form-group">
+            <tr>
+                <td><input asp-for="fname" value="@dr.fname" class="form-control" /></td>
+                <td><input asp-for="mname" value="@dr.mname" class="form-control" /></td>
+                <td><input asp-for="lname" value="@dr.lname" class="form-control" /></td>
+                <td>
+                    <select asp-for="Gender" class="form-control">
+                        <option value="@dr.Gender">@dr.Gender</option>
+                        @if (dr.Gender.Equals("Male"))
+                        {
+                            <option value="Female">Female</option>
+                        }
+                        else
+                        {
+                            <option value="Male">Male</option>
+                        }
+                    </select>
+                </td>
+                <td><input asp-for="Birthday" class="form-control" /></td>
+                <td><input asp-for="Address" value="@dr.Address" class="form-control" /></td>
+                <td><input asp-for="About" value="@dr.About" class="form-control" /></td>
+                <td>
+                    <select asp-for="Speciality" class="form-control">
+                        <option value="@dr.Speciality" selected="selected">@dr.Speciality</option>
+                        <option value="Anesthesiology">Anesthesiology</option>
+                        <option value="immunology">Immunology</option>
+                        <option value="Dermatologist">Dermatologist</option>
+                        <option value="InternalMedicine">Internal medicine</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="pediatric">pediatric</option>
+                        <option value="surgery">surgery</option>
+                    </select>
+                        </td>
+                        <td>
+                            <select asp-for="Time" class="form-control">
+                                <option value="@dr.Time" selected="selected">@dr.Time</option>
+                                <option value="7-10">7-10</option>
+                                <option value="10-1">10-1</option>
+                                <option value="2-6">2-6</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </td>
+                    </tr>
+                    <input type="hidden" asp-for="Id" value="@dr.Id" />
+                    <input type="hidden" asp-for="username" value="@dr.username" />
+                </form>
+            }
+            else
+            {
+                <tr>
+                    <td>@dr.fname</td>
+                    <td>@dr.mname</td>
+                    <td>@dr.lname</td>
+                    <td>@dr.Gender</td>
+                    <td>@(@DateTime.Now.Year - ((DateTime)@dr.Birthday).Year)</td>
+                    <td>@dr.Address</td>
+                    <td>@dr.About</td>
+                    <td>@dr.Speciality</td>
+                    <td>@dr.Time</td>
+                    <td>
+                        <a asp-action="DeleteDoctor" asp-route-drid="@dr.Id">Delete</a>|
+                        <a asp-action="EditDoctor" asp-route-drid="@dr.Id"> Edit</a>|
+                        <a href="/Identity/Account/Register"> Add</a>@*|
+                        <a asp-action="ViewDoctor" asp-route-drid="@dr.Id">View</a>*@
+
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

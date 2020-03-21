@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = "_DoctorLayout";
+    Doctor dr = ViewBag.dr;
+    List<Consultation> consult = ViewBag.consultations;
+}
+
+<h1 style="margin-top:50px;">Summary of your Consultations Dr. @dr.fname @dr.lname</h1>
+<h6>Add, Delete, or Edit...</h6>
+
+<table class="table table-active table-bordered table-hover" style="margin-top:100px;">
+    <thead class="thead-dark">
+    <th>
+        Patient Name
+    </th>
+    <th>
+        Title
+    </th>
+    <th>
+        Type
+    </th>
+    <th>
+        Date
+    </th>
+    <th style="text-align:center;"><a asp-action="CreateConsultationPage" asp-route-id="@dr.Id"><button class="btn btn-primary"><i class="fa fa-plus"></i> Add Consultation</button></a></th>
+    </thead>
+    <tbody>
+        
+        @foreach(Consultation c in consult)
+        {
+            <tr>
+                <td>@c.Patient.fname @c.Patient.mname @c.Patient.lname</td>
+                <td>@c.Title</td>
+                <td>@c.Type</td>
+                <td>@c.DateCons</td>
+                <td style="text-align:center;">
+                    <a asp-action="DeleteConsultation" asp-route-drId="@dr.Id" asp-route-conId="@c.Id">Delete</a> |
+                    <a asp-action="UpdateConsultationPage" asp-route-drId="@dr.Id" asp-route-conId="@c.Id">Edit</a> |
+                    <a asp-action="ViewConsultation" asp-route-drId="@dr.Id" asp-route-conId="@c.Id">View Details</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+ </table>

@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = "_InsuranceLayout";
+    InsuranceCompany ins = ViewBag.ins;
+    String id = ViewBag.id;
+}
+    <div class="float-center" style="margin-top:100px;">
+        <table class="table table-active">
+            <tr>
+                <td style="color:#99003d;"><b>Name: </b></td>
+                <td>@ins.Name</td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>UserName: </b></td>
+                <td>@ins.username</td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>Fax: </b></td>
+                <td>@ins.Fax</td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>Address: </b></td>
+                <td>@ins.Address</td>
+            </tr>
+        </table>
+    </div>

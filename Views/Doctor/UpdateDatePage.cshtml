@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = "_DoctorLayout";
+    List<Patient> patients = ViewBag.patients;
+    Date date = ViewBag.date;
+    String ptname = date.Patient.fname + " " + date.Patient.mname + " " + date.Patient.lname;
+    int drId = ViewBag.drId;
+}
+<div style="margin-top:50px;" >
+    <h3> Update the date for the patient: </h3>
+    
+</div>
+<div style="margin-top:100px">
+    <form asp-action="UpdateDate" asp-route-drId="@drId" asp-route-dateId="@date.Id" class="form-group">
+        <label ><b>Select Patient's Name:</b></label><br />
+        <select name="ptId" class="form-control col-4" value="@ptname">
+            @foreach (Patient pt in patients)
+            {
+                <option value="@pt.Id">@pt.fname @pt.mname @pt.lname </option>
+            }
+        </select>
+        <br />
+        <br />
+        <label ><b>Select suitable date:</b></label><br />
+        <input type="datetime-local" name="dt" class="form-control col-4" value="@date.date_dateTime" />
+        <br />
+        <button type="submit" class="btn btn-primary">Update Date</button>
+    </form>
+</div>

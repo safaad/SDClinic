@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = "_AssistantLayout";
+    int id = ViewBag.id;
+    Patient p = ViewBag.pt;
+    List<InsuranceCompany> ins = ViewBag.ins;
+}
+
+<h3 style="margin-top:50px;margin-bottom:15px;color:#99003d;"><b>Patient</b> @p.fname @p.mname @p.lname</h3>
+
+<div style="margin-bottom:15px;">
+    <img src="@p.Picture" class="img-thumbnail" style="width:300px;height:300px;" />
+</div>
+
+<div class="float-center">
+    <form asp-action="UpdatePatient" asp-route-asisId="@id" asp-route-ptId="@p.Id" class="form-group">
+        <table class="table table-active">
+            <tr>
+                <td style="color:#99003d;"><b>Name: </b></td>
+                <td>
+                    <div class="form-inline">
+                        <label>FName</label>
+                        <input type="text" name="fname" value="@p.fname" class="form-control" />
+                        <label>MName</label>
+                        <input type="text" name="mname" value="@p.mname" class="form-control" />
+                        <label>LName</label>
+                        <input type="text" name="lname" value="@p.lname" class="form-control" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>Gender: </b></td>
+                <td>
+
+                    <select name="Gender" class="form-control" value="@p.Gender">
+                        <option value="@p.Gender" selected="selected">@p.Gender</option>
+                        @if (p.Gender == "Male")
+                        {
+                            <option value="Female">Female</option>}
+                        else
+                        {
+                            <option value="Male">Male</option>}
+
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>Birthday: </b></td>
+                <td><input class="form-control " type="date" id="Birthday" name="Birthday" value="@p.Birthday" required="required" /></td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>Address: </b></td>
+                <td><input name="Address" value="@p.Address" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>BloodType: </b></td>
+                <td>
+                    <select name="BloodType" value="@p.BloodType" class="form-control">
+                        <option value="@p.BloodType" selected="selected">@p.BloodType</option>
+                        @if (@p.BloodType != "A+")
+                        {
+                            <option value="A+">A+</option>
+                        }
+                        @if (@p.BloodType != "A-")
+                        {
+                            <option value="A-">A-</option>}
+                        @if (@p.BloodType != "O+")
+                        {
+                            <option value="O+">O+</option>}
+                        @if (@p.BloodType != "O-")
+                        {
+                            <option value="O-">O-</option>}
+                        @if (@p.BloodType != "B+")
+                        {
+                            <option value="B+">B+</option>}
+                        @if (@p.BloodType != "B-")
+                        {
+                            <option value="B-">B-</option>}
+                        @if (@p.BloodType != "AB+")
+                        {
+                            <option value="AB+">AB+</option>
+                        }   @if (@p.BloodType != "AB-")
+                        {
+                            <option value="AB-">AB-</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="color:#99003d;"><b>Insurance Company: </b></td>
+                <td>
+
+                    <select name="pat_insurance_company_name" class="form-control" value="@p.pat_insurance_company_name">
+                        <option value="@p.pat_insurance_company_name" selected="selected">@p.pat_insurance_company_name</option>
+                        @foreach (InsuranceCompany cop in ins)
+                        {
+                            @if (@p.pat_insurance_company_name != cop.Name)
+                            {
+                                <option value="@cop.Name">@cop.Name</option>
+                            }
+
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+﻿@model Admin
+@{
+    Layout = "_AdminLayout";
+    List<Admin> admins = ViewBag.admins;
+    int id = ViewBag.id;
+    Admin a = ViewBag.admin;
+}
+
+<table class="table table-active table-bordered table-hover" style="margin-top:200px;">
+    <thead class="thead-dark">
+    <th>
+        First Name
+    </th>
+    <th>
+        Middle Name
+    </th>
+    <th>
+        Last Name
+    </th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (Admin admin in admins)
+        {
+            @if (admin.Id != id)
+            {
+                @if (admin.Id == a.Id)
+                {
+        <form asp-action="UpdateAdmin">
+            <tr>
+                <td><input asp-for="fname" value="@a.fname" /></td>
+                <td><input asp-for="mname" value="@a.mname" /></td>
+                <td><input asp-for="lname" value="@a.lname" /></td>
+                <td>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+                </td>
+            </tr>
+            <input asp-for="Id" type="hidden" value="@admin.Id" />
+            <input asp-for="username" type="hidden" value="@admin.username" />
+        </form>
+                }
+                else
+                {
+
+                    <tr>
+                        <td>@admin.fname</td>
+                        <td>@admin.mname</td>
+                        <td>@admin.lname</td>
+                        <td>
+                            <a asp-action="DeleteAdmin" asp-route-adminid="@admin.Id"><button class="btn btn-primary"><i class="fa fa-trash"></i></button></a>
+                            <a asp-action="EditAdmin" asp-route-adminid="@admin.Id"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                            <a href="/Identity/Account/RegisterAdmin"><button class="btn btn-primary"><i class="fa fa-plus"></i></button></a>
+
+                        </td>
+                    </tr>
+                }
+
+            }
+        }
+    </tbody>
+</table>

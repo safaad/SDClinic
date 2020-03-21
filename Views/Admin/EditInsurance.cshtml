@@ -1,0 +1,60 @@
+﻿@model InsuranceCompany
+@{
+    Layout = "_AdminLayout";
+    List<InsuranceCompany> inss = ViewBag.inss;
+    InsuranceCompany i = ViewBag.ins;
+}
+
+<table class="table table-active table-bordered table-hover" style="margin-top:200px;">
+    <thead class="thead-dark">
+    <th>
+        Name
+    </th>
+    <th>
+        Address
+    </th>
+    <th>
+        Fax
+    </th>
+    <th>Number of Patients</th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (InsuranceCompany ins in inss)
+        {
+            @if (i.Id == ins.Id)
+            {
+        <form asp-action="UpdateInsurance" class="form-group">
+            <tr>
+                <td>@ins.Name</td>
+                <td><input asp-for="Address" value="@ins.Address" class="form-control" /></td>
+                <td><input asp-for="Fax" value="@ins.Fax" class="form-control" /></td>
+                <td>@ins.patients.Count()</td>
+                <td>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </td>
+            </tr>
+            <input asp-for="Id" type="hidden" value="@ins.Id" />
+            <input asp-for="username" type="hidden" value="@ins.username" />
+            <input asp-for="Name" type="hidden" value="@ins.Name" />
+        </form>
+            }
+            else
+            {
+            <tr>
+                <td>@ins.Name</td>
+                <td>@ins.Address</td>
+                <td>@ins.Fax</td>
+                <td>@ins.patients.Count()</td>
+                <td>
+                    <a asp-action="DeleteInsurance" asp-route-insid="@ins.Id"><button class="btn btn-primary"><i class="fa fa-trash"></i></button></a>
+                    <a asp-action="EditInsurance" asp-route-insid="@ins.Id"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                    <a href="/Identity/Account/RegisterInsurance"><button class="btn btn-primary"><i class="fa fa-plus"></i></button></a>
+
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

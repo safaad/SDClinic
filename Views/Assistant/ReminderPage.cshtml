@@ -1,0 +1,66 @@
+﻿@model Reminder_Assistant
+@{
+    Layout = "_AssistantLayout";
+    int id = ViewBag.id;
+    List<Reminder_Assistant> rds = ViewBag.rds;
+}
+<div class="row" style="margin-top:100px;">
+    <div class="col-sm-3 col-md-3 col-lg-4">
+        <form asp-action="ReminderAdd" asp-route-asisid="@id" class="form-group">
+            <input asp-for="AssistantId" type="hidden" value="@id" class="form-control" />
+            <div class="form-inline">
+                <label>Date and Time : </label>
+                <input name="DateTime" type="datetime-local" class="form-control" />
+
+            </div>
+            <label>priority: </label>
+            <select name="Priority" class="form-control">
+                <option value="normal">normal</option>
+                <option value="important">important</option>
+                <option value="unimp">unimportant</option>
+            </select>
+            <label>Title: </label>
+            <input type="text" name="Title" class="form-control" />
+            <label>Content: </label>
+            <input type="text" name="Content" class="form-control" />
+            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>    Add</button>
+        </form>
+    </div>
+    <div class="col-sm-9 col-md-9 col-lg-8">
+        @foreach (Reminder_Assistant rd in rds)
+        {
+            @if (rd.Priority == "important")
+            {
+                <div class="alert alert-danger">
+                    <b><big>@rd.Title</big></b>
+                    <br />
+                    @rd.DateTime<br />
+                    @rd.Content
+                    <a asp-action="DeleteReminder" asp-route-asisId="@id" asp-route-remId="@rd.Id" class="alert-link"><i class="fa fa-trash"></i></a>
+                </div>
+            }
+            @if (rd.Priority == "normal")
+            {
+                <div class="alert alert-success">
+                    <b><big>@rd.Title</big></b>
+                    <br />
+                    @rd.DateTime<br />
+                    @rd.Content
+                    <a asp-action="DeleteReminder" asp-route-asisId="@id" asp-route-remId="@rd.Id" class="alert-link"><i class="fa fa-trash"></i></a>
+                </div>
+            }
+            @if (rd.Priority == "unimp")
+            {
+                <div class="alert alert-warning">
+                    <b><big>@rd.Title</big></b>
+                    <br />
+                    @rd.DateTime<br />
+                    @rd.Content
+                    <a asp-action="DeleteReminder" asp-route-asisId="@id" asp-route-remId="@rd.Id" class="alert-link"><i class="fa fa-trash"></i></a>
+                </div>
+            }
+
+
+        }
+    </div>
+</div>

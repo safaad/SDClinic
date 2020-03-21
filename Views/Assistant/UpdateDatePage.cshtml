@@ -1,0 +1,35 @@
+﻿@model Date 
+@{
+    Layout = "_AssistantLayout";
+    List<Patient> patients = ViewBag.patients;
+    Date date = ViewBag.date;
+    int asisId = ViewBag.asisId;
+    String ptname = date.Patient.fname + " " + date.Patient.mname + " " + date.Patient.lname;
+    int drId = ViewBag.drId;
+}
+<div style="margin-top:50px;">
+    <h3> Update the date for the patient: </h3>
+
+</div>
+<div style="margin-top:100px">
+    <form asp-action="UpdateDate" asp-route-asisId="@asisId"  class="form-group">
+        <label><b>Select Patient's Name:</b></label><br />
+            <select name="ptId" class="form-control col-4" value="@ptname">
+                <option value="@date.PatientId" selected="selected">@date.Patient.fname @date.Patient.mname @date.Patient.lname </option>
+                @foreach (Patient pt in patients)
+                {
+                    if (pt.Id != date.PatientId)
+                    {
+                    <option value="@pt.Id">@pt.fname @pt.mname @pt.lname </option>
+                    }
+                }
+            </select>
+        <br />
+        <br />
+        <label><b>Select suitable date:</b></label><br />
+        <input  type="datetime-local" name="dt" class="form-control col-4" value="@date.date_dateTime" />
+        <br />
+        <input type="hidden" name="dateId" value="@date.Id" />
+        <button type="submit" class="btn btn-primary">Update Date</button>
+    </form>
+</div>

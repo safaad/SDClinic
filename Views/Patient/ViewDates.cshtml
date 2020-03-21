@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "_PatientLayout";
+    List<Date> dates=ViewBag.dates;
+    int id=ViewBag.id;
+}
+
+    <table class="table table-active table-bordered table-hover" style="margin-top:100px;">
+        <thead class="thead-dark">
+        <th>
+            Doctor
+        </th>
+        <th>
+            Date
+        </th>
+        
+        </thead>
+        <tbody>
+            @foreach (Date d in dates)
+            {
+                <tr>
+                    <td>@d.Doctor.fname @d.Doctor.mname @d.Doctor.lname</td>
+                    <td>@d.date_dateTime</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>

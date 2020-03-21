@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "_AdminLayout";
+    List<Admin> admins = ViewBag.admins;
+    int id = ViewBag.id;
+}
+
+    <table class="table table-active table-bordered table-hover" style="margin-top:200px;">
+        <thead class="thead-dark">
+            <th>
+                First Name
+            </th>
+            <th>
+                Middle Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                <a href="/Identity/Account/RegisterAdmin"><button class="btn btn-primary"><i class="fa fa-plus"></i>    Add</button></a>
+            </th>
+        </thead>
+        <tbody>
+            @foreach(Admin admin in admins)
+            {
+                @if (admin.Id != id)
+                {
+                    <tr>
+                <td>@admin.fname</td>
+                <td>@admin.mname</td>
+                <td>@admin.lname</td>
+                <td>
+                    <a asp-action="DeleteAdmin" asp-route-adminid="@admin.Id"><button class="btn btn-primary"><i class="fa fa-trash"></i></button></a>
+                    <a asp-action="EditAdmin" asp-route-adminid="@admin.Id"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                   
+
+                </td>
+            </tr>
+
+                }
+            }
+        </tbody>
+    </table>

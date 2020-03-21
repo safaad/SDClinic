@@ -1,0 +1,103 @@
+﻿@model PatientModel
+@{
+    Layout = "_AssistantLayout";
+    List<Patient> patients = ViewBag.patients;
+    List<InsuranceCompany> ins = ViewBag.ins;
+    var users = ViewBag.users;
+    int id = ViewBag.id;
+    int index = 0;
+}
+
+
+    
+<form method="post" enctype="multipart/form-data" asp-controller="Assistant" asp-action="CreatePatient" asp-route-asisId="@id" class="form-group">
+
+    <table class="table table-active table-bordered table-hover" style="margin-top:100px;">
+        <thead class="thead-dark">
+        <th></th>
+        <th>Email</th>
+        <th>FName</th>
+        <th>Mname</th>
+        <th>LName</th>
+        <th style="width:120px;">Gender</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th> BloodType</th>
+        <th>Insurance</th>
+        <th></th>
+        </thead>
+        <tbody>
+            
+            @foreach (Patient pt in patients)
+            {
+                <tr>
+                    <td style="text-align:center;"><img src="@pt.Picture" style="width:60px;heigth:60px;" alt="/images/unkown.jpg" /></td>
+                    <td>@users[users.Count - index - 1].Email</td>
+                    <td>@pt.fname</td>
+                    <td>@pt.mname</td>
+                    <td>@pt.lname</td>
+                    <td>@pt.Gender</td>
+                    <td>@(@DateTime.Now.Year - ((DateTime)@pt.Birthday).Year)</td>
+                    <td>@pt.Address</td>
+
+                    <td>@pt.BloodType</td>
+                    <td>@pt.pat_insurance_company_name</td>
+                    <td>
+                        <a asp-action="DeletePatient" asp-route-asisId="@id" asp-route-ptId="@pt.Id">Delete</a>
+                        <a asp-action="UpdatePatientPage" asp-route-asisId="@id" asp-route-ptId="@pt.Id">Edit</a>
+                        <a asp-action="ViewPatient" asp-route-asisId="@id" asp-route-ptId="@pt.Id">View</a>
+                    </td>
+                </tr>
+
+                @if(index>-1){
+                    index = index + 1;
+                }
+            }
+
+        <tr>
+            <td>
+                <label class="btn btn-primary btn-file">
+                    <i class="fa fa-camera"></i><input asp-for="pic" type="file" style="display: none;">
+                </label>
+                    </td>
+            <td>
+                <input type="email" name="Email" class="form-control" />
+   
+             </td>
+            <td><input asp-for="fname" class="form-control" /></td>
+            <td><input asp-for="mname" class="form-control" /></td>
+            <td><input asp-for="lname" class="form-control" /></td>
+            <td>
+                <select name="Gender" class="form-control">
+
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </td>
+            <td><input class="form-control col-11" type="date" id="Birthday" name="Birthday" style="width:120px;" /></td>
+            <td><input asp-for="Address" class="form-control" /></td>
+            <td>
+                <select name="BloodType" class="form-control" style="width:80px;">
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+            </td>
+            <td>
+                <select name="pat_insurance_company_name" class="form-control">
+                    @foreach (InsuranceCompany cop in ins)
+                    {
+                        <option value="@cop.Name">@cop.Name</option>
+                    }
+                </select>
+            </td>
+            <td><button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i></button></td>
+        </tr>
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = "_DoctorLayout";
+    Consultation cons = ViewBag.cons;
+    int drId = ViewBag.drId;
+}
+
+<h2 style="margin-top:50px;">@cons.Title</h2>
+<h5> @cons.Type in @cons.DateCons</h5>
+<h3><b>Patient's name:</b> @cons.Patient.fname @cons.Patient.mname  @cons.Patient.lname</h3>
+<br />
+
+<div>
+    <a asp-action="UpdateConsultationPage" asp-route-drId="@drId" asp-route-conId="@cons.Id"><button class="btn btn-primary"><i class="fa fa-edit"></i>  Edit</button></a>
+</div>
+
+<br />
+<div>
+    <h6>Symptoms:</h6>
+    <p>
+        @cons.Symptoms
+    </p>
+    <hr />
+    <h6>Diagnosis:</h6>
+    <p>
+        @cons.Diagnoses
+    </p>
+    <hr />
+    <h6>Temparture:</h6>
+    <p>
+        @cons.Temp
+    </p>
+    <hr />
+    <h6>Blood Pressure:</h6>
+    <p>
+        @cons.BloodPressure
+    </p>
+    <hr />
+    <h6>Cost:</h6>
+    <p>
+        @cons.Cost
+    </p>
+    <hr />
+    <h6>Treatment:</h6>
+    <p>
+        @cons.Treatment
+    </p>
+    <hr />
+    <h6>Insurance Confirmation</h6>
+    <p>@cons.Insurance_Confirmation</p>
+</div>
+

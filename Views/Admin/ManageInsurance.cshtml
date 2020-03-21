@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "_AdminLayout";
+    List<InsuranceCompany> inss = ViewBag.inss;
+}
+
+    <table class="table table-active table-bordered table-hover" style="margin-top:200px;">
+        <thead class="thead-dark">
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Fax
+        </th>
+        <th>Number of Patients</th>
+        <th>
+            <a href="/Identity/Account/RegisterInsurance"><button class="btn btn-primary"><i class="fa fa-plus"></i>    Add</button></a>
+        </th>
+        </thead>
+        <tbody>
+            @foreach (InsuranceCompany ins in inss)
+            {
+                <tr>
+                    <td>@ins.Name</td>
+                    <td>@ins.Address</td>
+                    <td>@ins.Fax</td>
+                    <td>@ins.patients.Count()</td>
+                    <td>
+                        <a asp-action="DeleteInsurance" asp-route-insid="@ins.Id"><button class="btn btn-primary"><i class="fa fa-trash"></i></button></a>
+                        <a asp-action="EditInsurance" asp-route-insid="@ins.Id"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

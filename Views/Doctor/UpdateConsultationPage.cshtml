@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = "_DoctorLayout";
+    Consultation cons = ViewBag.cons;
+    int drId = ViewBag.drId;
+}
+<h2 style="margin-top:50px;">@cons.Title</h2>
+<h5> @cons.Type in @cons.DateCons</h5>
+<h3><b>Patient's name:</b> @cons.Patient.fname @cons.Patient.mname  @cons.Patient.lname</h3>
+
+<br />
+<form asp-action="UpdateConsultation" asp-route-drId="@drId" asp-route-conId="@cons.Id" asp-route-ptId="@cons.Patient.Id" class="form-group">
+    <div>
+        <h6>Symptoms:</h6>
+        <p>
+            <textarea name="Symptoms" value="@cons.Symptoms" class="form-control col-6">@cons.Symptoms</textarea>
+        </p>
+        <hr />
+        <h6>Diagnosis:</h6>
+        <p>
+            <textarea name="Diagnoses" value="@cons.Diagnoses" class="form-control col-6">@cons.Diagnoses</textarea>
+
+        </p>
+        <hr />
+        <h6>Temparture:</h6>
+        <p>
+            <input type="text" name="Temp" value="@cons.Temp" class="form-control col-6">
+
+        </p>
+        <hr />
+        <h6>Blood Pressure:</h6>
+        <p>
+            <input type="text" name="BloodPressure" value="@cons.BloodPressure" class="form-control col-6">
+
+        </p>
+        <hr />
+        <h6>Cost:</h6>
+        <p>
+            @cons.Cost
+        </p>
+        <hr />
+        <h6>Treatment:</h6>
+        <p>
+            <textarea name="Treatment" value="@cons.Treatment" class="form-control col-6">@cons.Treatment</textarea>
+        </p>
+        <hr />
+        <h6>Insurance Confirmation</h6>
+        <p>@cons.Insurance_Confirmation</p>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

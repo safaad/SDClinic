@@ -1,0 +1,26 @@
+﻿@{
+
+    Layout = "_AssistantLayout";
+  
+    Assistant asis= ViewBag.asis;
+
+}
+
+
+<div class="float-center" style="margin-top:100px;">
+    <table class="table table-active">
+        <tr>
+            <td style="color:#99003d;"><b>Name: </b></td>
+            <td>@asis.FName @asis.MName @asis.LName</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>UserName: </b></td>
+            <td>@asis.username</td>
+        </tr>
+        <tr>
+            <td style="color:#99003d;"><b>Doctor: </b></td>
+            <td>@asis.Doctor.fname @asis.Doctor.mname @asis.Doctor.lname</td>
+        </tr>
+
+    </table>
+</div>
